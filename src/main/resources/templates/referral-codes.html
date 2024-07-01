@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Initial Referral Codes</title>
+</head>
+<body>
+    <h1>Initial Referral Codes</h1>
+    <ul>
+        <li th:each="code : ${initialReferralCodes}" th:text="${code}">Referral Code</li>
+    </ul>
+    <a href="/register">Go to Register</a>
+</body>
+</html>

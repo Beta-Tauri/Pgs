@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <p>Welcome, <span th:text="${usuario.username}">Username</span>!</p>
+    <p>Your email: <span th:text="${usuario.email}">Email</span></p>
+    <p>Your referral code: <span th:text="${usuario.referralCode}">Referral Code</span></p>
+    <p>Your level: <span th:text="${usuario.level}">Level</span></p>
+</body>
+</html>
