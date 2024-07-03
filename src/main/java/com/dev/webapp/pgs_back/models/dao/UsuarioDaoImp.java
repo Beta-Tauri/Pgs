@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import com.dev.webapp.pgs_back.models.entity.Usuario;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import jakarta.persistence.NoResultException;
 
 @Repository
 public class UsuarioDaoImp implements IUsuarioDao {
@@ -41,5 +41,11 @@ public class UsuarioDaoImp implements IUsuarioDao {
     @Override
     public void save(Usuario usuario) {
         entityManager.persist(usuario);
+    }
+
+    @Override
+    public int count() {
+        Query query = entityManager.createQuery("SELECT COUNT(u) FROM Usuario u");
+        return ((Long) query.getSingleResult()).intValue();
     }
 }

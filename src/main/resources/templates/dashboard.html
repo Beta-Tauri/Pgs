@@ -2,12 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <p>Welcome, <span th:text="${usuario.username}">Username</span>!</p>
-    <p>Your email: <span th:text="${usuario.email}">Email</span></p>
-    <p>Your referral code: <span th:text="${usuario.referralCode}">Referral Code</span></p>
-    <p>Your level: <span th:text="${usuario.level}">Level</span></p>
+    <h1>Bienvenido, <span th:text="${usuario.username}">Username</span></h1>
+    <p>Tu código de referido: <span th:text="${usuario.referralCode}">ReferralCode</span></p>
+    <a href="/referral-codes">Ver códigos de referido iniciales</a>
 </body>
 </html>

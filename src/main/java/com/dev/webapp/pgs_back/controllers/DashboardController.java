@@ -1,23 +1,42 @@
 package com.dev.webapp.pgs_back.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.dev.webapp.pgs_back.models.entity.Usuario;
-import com.dev.webapp.pgs_back.models.service.IUserService;
-
 @Controller
 public class DashboardController {
-    @Autowired
-    private IUserService userService;
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        Usuario usuario = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        model.addAttribute("usuario", usuario);
+        // Agregar paquetes a la vista
+        model.addAttribute("packages", getPackages());
         return "dashboard";
+    }
+
+    // Método para obtener paquetes (puedes modificarlo para obtener datos de la base de datos)
+    private List<Package> getPackages() {
+        List<Package> packages = new ArrayList<>();
+        packages.add(new Package("Cyber", "Security", "image1.png"));
+        packages.add(new Package("Web", "Development", "image2.png"));
+        // Agrega más paquetes según sea necesario
+        return packages;
+    }
+
+    private class Package {
+        private String name;
+        private String category;
+        private String image;
+
+        public Package(String name, String category, String image) {
+            this.name = name;
+            this.category = category;
+            this.image = image;
+        }
+
+        // Getters y Setters
     }
 }

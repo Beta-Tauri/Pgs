@@ -9,4 +9,5 @@ public interface IUsuarioDao {
     Usuario findByUsername(String username);
     Usuario findByReferralCode(String referralCode);
     void save(Usuario usuario);
+    int count();
 }
