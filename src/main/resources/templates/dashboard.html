@@ -2,11 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <style>
+        .carousel-item img {
+            max-height: 300px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido, <span th:text="${usuario.username}">Username</span></h1>
-    <p>Tu código de referido: <span th:text="${usuario.referralCode}">ReferralCode</span></p>
-    <a href="/referral-codes">Ver códigos de referido iniciales</a>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h1>Hello, <span th:text="${usuario.username}">User</span></h1>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div id="packageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div th:each="package, stat : ${packages}" class="carousel-item" th:classappend="${stat.index == 0} ? 'active'">
+                            <img th:src="@{/images/} + ${package.image}" class="d-block w-100" th:alt="${package.name}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 th:text="${package.name}">Package Name</h5>
+                                <p th:text="${package.category}">Category</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#packageCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#packageCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

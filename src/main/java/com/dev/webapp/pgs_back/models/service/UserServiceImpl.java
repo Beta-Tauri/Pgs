@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,13 +58,11 @@ public class UserServiceImpl implements IUserService {
                 referralCodeDao.save(code);
                 usuario.setReferralCode(code.getCode());
             } else {
-                // Código ya usado, permitir registro pero asignar nuevo código de referido al nuevo usuario
                 usuario.setReferralCode(generateReferralCode());
             }
 
             usuarioDao.save(usuario);
 
-            // Generar y guardar un nuevo código de referido para el nuevo usuario
             ReferralCode newReferralCode = new ReferralCode();
             newReferralCode.setCode(generateReferralCode());
             newReferralCode.setUsed(false);
@@ -92,5 +91,17 @@ public class UserServiceImpl implements IUserService {
     public List<String> getInitialReferralCodes() {
         List<ReferralCode> codes = referralCodeDao.findAll();
         return codes.stream().map(ReferralCode::getCode).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean checkPassword(String password, String password2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'checkPassword'");
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
     }
 }

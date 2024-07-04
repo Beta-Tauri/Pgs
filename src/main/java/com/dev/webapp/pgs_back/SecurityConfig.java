@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -18,8 +19,8 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/login", "/css/**", "/js/**", "/").permitAll()
-                    .requestMatchers("/h2-console/**").permitAll()  // Permitir acceso a la consola H2
+                    .requestMatchers("/login", "/register", "/css/**", "/js/**", "/").permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll() // Permitir acceso sin autenticación a H2 console
                     .anyRequest().authenticated()
             )
             .formLogin(formLogin ->
@@ -30,11 +31,15 @@ public class SecurityConfig {
             .logout(logout ->
                 logout
                     .permitAll()
+            )
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")) // Deshabilitar CSRF para H2 console
+            )
+            .headers(headers -> headers
+                .frameOptions(frameOptions -> frameOptions
+                    .sameOrigin() // Permitir que la consola H2 se cargue en un iframe
+                )
             );
-
-        // Añadir esto para habilitar frames en H2
-        http.headers().frameOptions().sameOrigin();
-
         return http.build();
     }
 
