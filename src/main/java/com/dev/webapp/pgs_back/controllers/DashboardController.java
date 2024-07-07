@@ -19,6 +19,7 @@ public class DashboardController {
     @Autowired
     private IUserService userService;
 
+  /*
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -56,5 +57,11 @@ public class DashboardController {
 
         public String getImage() { return image; }
         public void setImage(String image) { this.image = image; }
+    }
+    */
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        // Aquí puedes agregar datos adicionales que se mostrarán en el dashboard
+        return "dashboard";
     }
 }

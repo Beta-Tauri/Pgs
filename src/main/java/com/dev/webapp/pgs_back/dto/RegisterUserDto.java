@@ -21,5 +21,5 @@ public class RegisterUserDto {
     @NotEmpty(message = "El código de referido es obligatorio")
     private String referralCode;
 
-    private Boolean terms;
+    private Boolean terms; 
 }

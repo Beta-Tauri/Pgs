@@ -14,10 +14,12 @@
                 <div class="form-group">
                     <label for="login-username">Nombre de Usuario</label>
                     <input type="text" id="login-username" th:field="*{username}" />
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Incorrect username</div>
                 </div>
                 <div class="form-group">
                     <label for="login-password">Contraseña</label>
                     <input type="password" id="login-password" th:field="*{password}" />
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect password</div>
                 </div>
                 <div class="form-group">
                     <button type="submit">Ingreso</button>
@@ -28,22 +30,27 @@
                 <div class="form-group">
                     <label for="register-username">Nombre de Usuario</label>
                     <input type="text" id="register-username" th:field="*{username}" />
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username is required</div>
                 </div>
                 <div class="form-group">
                     <label for="register-email">Correo</label>
                     <input type="email" id="register-email" th:field="*{email}" />
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email is required</div>
                 </div>
                 <div class="form-group">
                     <label for="register-password">Contraseña</label>
                     <input type="password" id="register-password" th:field="*{password}" />
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password is required</div>
                 </div>
                 <div class="form-group">
                     <label for="register-referralCode">Código de Referido</label>
                     <input type="text" id="register-referralCode" th:field="*{referralCode}" />
+                    <div th:if="${#fields.hasErrors('referralCode')}" th:errors="*{referralCode}">Referral code is invalid</div>
                 </div>
                 <div class="form-group checkbox-label">
                     <input type="checkbox" id="register-terms" th:field="*{terms}" />
                     <label for="register-terms">Acepto Términos y Condiciones</label>
+                    <div th:if="${#fields.hasErrors('terms')}" th:errors="*{terms}">You must accept the terms</div>
                 </div>
                 <div class="form-group">
                     <button type="submit">Registrarme</button>
