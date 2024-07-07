@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+.sidebar {
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.sidebar .nav-link {
+    color: #ffffff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #565d65;
+}
+
+.sidebar .nav-link.active {
+    background-color: #343a40;
+}
+
+.h2 {
+    color: #333;
+}
+
+.carousel-item img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.carousel-caption h5 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.carousel-caption p {
+    font-size: 16px;
+    color: #ddd;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
